@@ -1,12 +1,13 @@
-package com.unsoed.informatikamobile.ui.adapter
+package com.example.unsoed.informatikamobile.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.databinding.ListBukuBinding
-import com.unsoed.informatikamobile.data.model.BookDoc
+import com.example.unsoed.informatikamobile.data.model.BookDoc
+import com.example.unsoed.informatikamobile.databinding.ListBukuBinding
 
-class BookAdapter(private var books: List<BookDoc>) :
+
+class BookAdapter(private var books: List<BookDoc>, private val onBookClickListener: onBookClickListener) :
     RecyclerView.Adapter<BookAdapter.BookViewHolder>(){
 
     inner class BookViewHolder(val binding: ListBukuBinding) :
@@ -24,10 +25,19 @@ class BookAdapter(private var books: List<BookDoc>) :
         holder.binding.tvTitle.text = book.title ?: "No Title"
         holder.binding.tvAuthor.text = book.authorName?.joinToString(", ") ?: "Unknown Author"
         holder.binding.tvYear.text = book.firstPublishYear?.toString() ?: "-"
+
+        holder.binding.root.setOnClickListener{
+            onBookClickListener.onBookClick(book)
+        }
     }
 
     fun setData(newBooks: List<BookDoc>) {
         books = newBooks
         notifyDataSetChanged()
     }
+
+}
+
+interface onBookClickListener{
+    fun onBookClick(book: BookDoc)
 }

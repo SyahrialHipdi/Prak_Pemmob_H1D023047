@@ -1,4 +1,4 @@
-package com.unsoed.informatikamobile.data.model
+package com.example.unsoed.informatikamobile.data.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -13,5 +13,7 @@ data class BookDoc(
     @SerializedName("author_name")
         val authorName: List<String>?,
     @SerializedName("first_publish_year")
-        val firstPublishYear: Int?
+    val firstPublishYear: Int?,
+    @SerializedName("cover_i")
+    val coverId: Int?
 )

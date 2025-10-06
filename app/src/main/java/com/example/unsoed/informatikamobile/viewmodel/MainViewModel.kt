@@ -1,16 +1,17 @@
-package com.unsoed.informatikamobile.viewmodel
+package com.example.unsoed.informatikamobile.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.unsoed.informatikamobile.data.model.BookDoc
+import com.example.unsoed.informatikamobile.data.model.BookDoc
+import com.example.unsoed.informatikamobile.data.network.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
     private val _books = MutableLiveData<List<BookDoc>>()
-    val books: LiveData<List<BookDoc>> = _books
+    val books: LiveData<List<BookDoc>> get() = _books
 
     fun fetchBooks(query: String) {
         viewModelScope.launch {
@@ -26,6 +27,6 @@ class MainViewModel: ViewModel() {
             } catch (e: Exception) {
                 Log.e("API_EXCEPTION", e.localizedMessage ?: "Unknown error")
             }
-            }
+        }
     }
 }

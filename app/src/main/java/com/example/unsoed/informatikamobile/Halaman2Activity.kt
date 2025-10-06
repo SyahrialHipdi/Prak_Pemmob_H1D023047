@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.unsoed.informatikamobile
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import com.example.myapplication.databinding.ActivityHalaman2Binding
+import com.example.unsoed.informatikamobile.R
+import com.example.unsoed.informatikamobile.databinding.ActivityHalaman2Binding
 
 class Halaman2Activity : AppCompatActivity() {
 
@@ -41,6 +42,10 @@ class Halaman2Activity : AppCompatActivity() {
             it.imgIcon.setImageResource(R.drawable.ic_phone)
             it.tvLayout.setText(R.string.telepon)
         }
+        binding.layoutBuku.let{
+            it.imgIcon.setImageResource(R.drawable.ic_book)
+            it.tvLayout.setText(R.string.koleksi_buku)
+        }
     }
 
     private fun initListener(){
@@ -59,8 +64,8 @@ class Halaman2Activity : AppCompatActivity() {
         binding.layoutEmail.root.setOnClickListener{
             val intent = Intent(Intent.ACTION_SENDTO).apply{
                 data = "mailto:${getString(R.string.email)}".toUri()
-                startActivity(intent)
             }
+                startActivity(intent)
         }
 
         binding.layoutPhone.root.setOnClickListener{
@@ -70,8 +75,14 @@ class Halaman2Activity : AppCompatActivity() {
                 startActivity(intent)
         }
 
+        binding.layoutBuku.root.setOnClickListener {
+            startActivity(Intent(this, DaftarBukuActivity::class.java))
+        }
+
         binding.btnBack.setOnClickListener{
             finish()
         }
+
+
     }
 }
